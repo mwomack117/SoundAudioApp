@@ -1,0 +1,23 @@
+/* form {
+  width: 300px;
+  margin: 0 auto;
+} */
+
+/* .form-div {
+  text-align: center;
+  background: url("https://media.tenor.com/images/7cbb91ac1e33cd4fb85c8509e6acca9c/raw")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 65vh;
+  padding-top: 2vh;
+} */
+
+.form-div {
+  background-color: lightblue;
+  height: 50vh;
+  padding-top: 2vh;
+  margin-bottom: 2vh;
+}
