@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../database/models/user");
+const Sounds = require("../database/models/sound");
 const passport = require("../passport");
 
 router.post("/", (req, res) => {
@@ -25,6 +26,18 @@ router.post("/", (req, res) => {
         res.json(savedUser);
       });
     }
+  });
+});
+
+router.post("/sound", (req, res) => {
+  console.log("save sound");
+  console.log(req);
+  const newSound = new Sounds({
+    soundId: req.body.soundId
+  });
+  newSound.save((err, savedSound) => {
+    if (err) return res.json(err);
+    res.json(savedSound);
   });
 });
 
