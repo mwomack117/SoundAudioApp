@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // components
 import Signup from "./components/signup";
 import LoginForm from "./components/login";
-import Navbar from "./components/navbar";
+import NavBar from "./components/navbar";
 import Home from "./components/home";
 
 class App extends Component {
@@ -29,6 +29,7 @@ class App extends Component {
     this.setState(userObject);
   }
 
+  // ??? getUser ???
   getUser() {
     axios.get("/user/").then(response => {
       console.log("Get user response: ");
@@ -54,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
         {/* Routes to different components */}

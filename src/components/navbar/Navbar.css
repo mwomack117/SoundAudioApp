@@ -1,7 +1,14 @@
-ul {
-  margin-right: 75px;
+.brand {
+  font-size: 1.7em;
+  margin-left: 15px;
 }
 
-.brand-logo {
-  margin-left: 25px;
+.links {
+  margin-left: 20px;
+  font-size: 20px;
+  text-decoration: none !important;
+}
+
+.nav {
+  margin-right: 15px;
 }

@@ -1,5 +1,11 @@
 .sound-div {
-  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.sound {
+  margin-top: 100px;
+  background-color: gray;
 }
 
 .sound img {

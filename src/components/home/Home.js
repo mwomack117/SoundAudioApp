@@ -5,9 +5,12 @@ import AudioList from "../AudioList";
 import "./Home.css";
 
 class Home extends Component {
+  // constructor(props) {
+  //   super(props);
   state = {
     audios: []
   };
+  // }
 
   onTermSubmit = async searchTerm => {
     const response = await API.getSounds(searchTerm);

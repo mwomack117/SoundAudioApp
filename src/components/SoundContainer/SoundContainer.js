@@ -28,7 +28,7 @@ class Sound extends Component {
     return (
       <div className="sound">
         <div className="sound-div">
-          {soundCards.map(soundcard => {
+          {soundCards.map(soundCard => {
             return <img src={soundCard.imageSrc} alt="placeholder" />;
           })}
         </div>
