@@ -3,6 +3,17 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import Sound from "../SoundContainer/SoundContainer";
+import {
+  Container,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  FormText,
+  FormFeedback
+} from "reactstrap";
 
 class LoginForm extends Component {
   constructor() {
@@ -10,11 +21,19 @@ class LoginForm extends Component {
     this.state = {
       username: "",
       password: "",
-      redirectTo: null
+      redirectTo: null,
+      audios: [],
+      validate: {
+        emailState: ""
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  // componentWillMount() {
+  //   axios.get;
+  // }
 
   handleChange(event) {
     this.setState({
@@ -22,8 +41,19 @@ class LoginForm extends Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  validateEmail(e) {
+    const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const { validate } = this.state;
+    if (emailRex.test(e.target.value)) {
+      validate.emailState = "has-success";
+    } else {
+      validate.emailState = "has-danger";
+    }
+    this.setState({ validate });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
     console.log("handleSubmit");
 
     axios
@@ -34,6 +64,7 @@ class LoginForm extends Component {
       .then(response => {
         console.log("login response: ");
         console.log(response);
+
         if (response.status === 200) {
           // update App.js state
           this.props.updateUser({
@@ -57,83 +88,41 @@ class LoginForm extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div>
-          {/* <section class="form-div">
-            <div class="valign-wrapper row login-box">
-              <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-                <form autoComplete="new-password">
-                  <div class="card-content">
-                    <span class="card-title">Enter login details</span>
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <label for="text">User ID</label>
-                        <input
-                          type="text"
-                          class="validate"
-                          name="username"
-                          id="userid"
-                          autoComplete="off"
-                        />
-                      </div>
-                      <div class="input-field col s12">
-                        <label for="password">Password </label>
-                        <input
-                          type="password"
-                          class="validate"
-                          name="password"
-                          id="password"
-                          autoComplete="off"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-action right-align">
-                    <input
-                      type="reset"
-                      id="reset"
-                      class="btn-flat grey-text waves-effect"
-                    />
-                    <input
-                      type="submit"
-                      class="btn teal waves-effect waves-light"
-                      value="Login"
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </section> */}
-
-          <div className="form-div">
-            <br />
-            <h4 style={{ textAlign: "center" }}>Login</h4>
-            <form className="">
-              <div className="form-group">
-                <div className="col-1 col-ml-auto">
-                  <label className="form-label" htmlFor="username">
-                    Username
-                  </label>
-                </div>
-                <div className="col-3 col-mr-auto">
-                  <input
+        <div className="login-page-div">
+          <Container className="signInForm">
+            <h2 className="text-center mb-3">
+              <i className="mr-2 fas fa-sign-in-alt" />
+              Log In
+            </h2>
+            <Form className="form">
+              <Col>
+                <FormGroup>
+                  <Label for="exampleusername">username</Label>
+                  <Input
                     className="form-input"
-                    type="text"
+                    type="username"
                     id="username"
                     name="username"
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
+                    placeholder="username"
+                    valid={this.state.validate.emailState === "has-success"}
+                    invalid={this.state.validate.emailState === "has-danger"}
+                    value={this.state.email}
+                    onChange={e => {
+                      this.validateEmail(e);
+                      this.handleChange(e);
+                    }}
                   />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="col-1 col-ml-auto">
-                  <label className="form-label" htmlFor="password">
-                    Password:{" "}
-                  </label>
-                </div>
-                <div className="col-3 col-mr-auto">
-                  <input
+                  <FormFeedback valid>
+                    That's a valid looking email you've got there.
+                  </FormFeedback>
+                  <FormFeedback>Please input a valid email.</FormFeedback>
+                </FormGroup>
+              </Col>
+
+              <Col>
+                <FormGroup>
+                  <Label for="examplePassword">Password</Label>
+                  <Input
                     className="form-input"
                     placeholder="password"
                     type="password"
@@ -141,20 +130,22 @@ class LoginForm extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                   />
-                </div>
-              </div>
-              <div className="form-group ">
-                <div className="col-7" />
-                <button
-                  className="btn btn-primary col-1 col-mr-auto"
-                  onClick={this.handleSubmit}
-                  type="submit"
-                >
-                  Login
-                </button>
-              </div>
-            </form>{" "}
-          </div>
+                  <FormFeedback>Uh oh! Wrong password.</FormFeedback>
+                </FormGroup>
+              </Col>
+              <Button
+                className="btn"
+                color="primary"
+                onClick={this.handleSubmit}
+                type="submit"
+              >
+                Submit
+              </Button>
+              <p className="mt-3 ml-1">
+                No Account? <a href="/signup"> Register</a>
+              </p>
+            </Form>
+          </Container>
           <Sound />
         </div>
       );

@@ -1,31 +1,97 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./Signup.css";
+import { Redirect } from "react-router-dom";
+
+import {
+  Container,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  FormText,
+  FormFeedback
+} from "reactstrap";
 
 class Signup extends Component {
   constructor() {
     super();
     this.state = {
+      name: "",
       username: "",
       password: "",
-      confirmPassword: ""
+      password2: "",
+      errorMsg: "",
+      redirectTo: null,
+      validate: {
+        emailState: ""
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
-  handleSubmit(event) {
+
+  validateEmail(e) {
+    const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const { validate } = this.state;
+    if (emailRex.test(e.target.value)) {
+      validate.emailState = "has-success";
+    } else {
+      validate.emailState = "has-danger";
+    }
+    this.setState({ validate });
+  }
+
+  toggleError() {
+    this.setState({ errorMsg: "" });
+  }
+
+  handleSubmit(e) {
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
-    event.preventDefault();
+    e.preventDefault();
 
-    //request to server to add a new username/password
+    this.checkform();
+  }
+
+  checkform = () => {
+    console.log("this ran");
+    if (
+      this.state.password !== "" &&
+      this.state.password === this.state.password2
+    ) {
+      if (this.state.password.length < 6) {
+        this.setState({
+          errorMsg: "Error: Password must contain at least six characters!"
+        });
+        setTimeout(() => {
+          this.toggleError();
+        }, 2000);
+        return false;
+      }
+    } else {
+      this.setState({
+        errorMsg:
+          "Error: Please check that you've entered and confirmed your password!"
+      });
+      setTimeout(() => {
+        this.toggleError();
+      }, 2000);
+      return false;
+    }
+
+    //request to server to add a new email/password
     axios
       .post("/user/", {
+        name: this.state.name,
         username: this.state.username,
         password: this.state.password
       })
@@ -45,59 +111,91 @@ class Signup extends Component {
         console.log("signup error: ");
         console.log(error);
       });
-  }
+  };
 
   render() {
     return (
-      <div className="SignupForm">
-        <h4>Sign up</h4>
-        <form className="form-horizontal">
-          <div className="form-group">
-            <div className="col-1 col-ml-auto">
-              <label className="form-label" htmlFor="username">
-                Username
-              </label>
-            </div>
-            <div className="col-3 col-mr-auto">
-              <input
-                className="form-input"
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-1 col-ml-auto">
-              <label className="form-label" htmlFor="password">
-                Password:{" "}
-              </label>
-            </div>
-            <div className="col-3 col-mr-auto">
-              <input
-                className="form-input"
-                placeholder="password"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group ">
-            <div className="col-7" />
-            <button
-              className="btn btn-primary col-1 col-mr-auto"
+      <div className="signup-page-div">
+        <Container className="signUpForm">
+          <h2 className="text-center mb-3">
+            <i className="mr-2 fas fa-user-plus" />
+            Sign Up
+          </h2>
+          <Form>
+            <Col>
+              <FormGroup>
+                <Label for="exampleName">Name</Label>
+                <Input
+                  className="form-input"
+                  placeholder="Name"
+                  type="name"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="exampleEmail">Email</Label>
+                <Input
+                  className="form-input"
+                  type="email"
+                  id="username"
+                  name="username"
+                  placeholder="username"
+                  valid={this.state.validate.emailState === "has-success"}
+                  invalid={this.state.validate.emailState === "has-danger"}
+                  value={this.state.username}
+                  onChange={e => {
+                    this.validateEmail(e);
+                    this.handleChange(e);
+                  }}
+                />
+                <FormFeedback valid>
+                  That's a valid looking email you've got there.
+                </FormFeedback>
+                <FormFeedback>Uh oh! Please input a valid email.</FormFeedback>
+              </FormGroup>
+            </Col>
+
+            <Col>
+              <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <Input
+                  className="form-input"
+                  placeholder="password"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="examplePassword">Confirm</Label>
+                <Input
+                  className="form-input"
+                  placeholder="Confrim Password"
+                  type="password"
+                  name="password2"
+                  value={this.state.password2}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+            </Col>
+            <p className="text-danger">{this.state.errorMsg}</p>
+            <Button
+              className="btn"
+              color="primary"
               onClick={this.handleSubmit}
               type="submit"
             >
-              Sign up
-            </button>
-          </div>
-        </form>
+              Submit
+            </Button>
+          </Form>
+        </Container>
       </div>
     );
   }

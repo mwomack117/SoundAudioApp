@@ -1,0 +1,15 @@
+.signUpForm {
+  background-color: white;
+  width: 350px;
+  padding: 10px;
+  border: gray solid 2px;
+  border-radius: 8px;
+  margin-top: 2vh;
+}
+
+.signup-page-div {
+  background-color: slategray;
+  height: 100vh;
+  padding-top: 2vh;
+  margin-bottom: 2vh;
+}
