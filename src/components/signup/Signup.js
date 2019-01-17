@@ -25,6 +25,7 @@ class Signup extends Component {
       password2: "",
       errorMsg: "",
       redirectTo: null,
+      redirect: false,
       validate: {
         emailState: ""
       }
@@ -74,7 +75,7 @@ class Signup extends Component {
         });
         setTimeout(() => {
           this.toggleError();
-        }, 2000);
+        }, 3000);
         return false;
       }
     } else {
@@ -84,7 +85,7 @@ class Signup extends Component {
       });
       setTimeout(() => {
         this.toggleError();
-      }, 2000);
+      }, 3000);
       return false;
     }
 
@@ -101,7 +102,8 @@ class Signup extends Component {
           console.log("successful signup");
           this.setState({
             //redirect to login page
-            redirectTo: "/login"
+            // redirectTo: "/login"
+            redirect: true
           });
         } else {
           console.log("username already taken");
@@ -114,6 +116,9 @@ class Signup extends Component {
   };
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div className="signup-page-div">
         <Container className="signUpForm">
