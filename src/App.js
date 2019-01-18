@@ -13,44 +13,22 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      userId: null
     };
 
-    this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
-    this.getUser();
   }
 
   updateUser(userObject) {
     this.setState(userObject);
   }
 
-  // ??? getUser ???
-  getUser() {
-    axios.get("/user/").then(response => {
-      console.log("Get user response: ");
-      console.log(response.data);
-      if (response.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
 
-        this.setState({
-          loggedIn: true,
-          username: response.data.user.username,
-          user: response.data.user
-        });
-      } else {
-        console.log("Get user: no user");
-        this.setState({
-          loggedIn: false,
-          username: null
-        });
-      }
-    });
-  }
 
   render() {
     return (
@@ -66,7 +44,7 @@ class App extends Component {
               exact
               path="/"
               component={() => (
-                <Home user={this.state.user} loggedIn={this.state.loggedIn} />
+                <Home user={this.state.user} userId={this.state.userId} loggedIn={this.state.loggedIn} />
               )}
             />
             <Route
@@ -85,7 +63,7 @@ class App extends Component {
             />
             <Route
               path="/login"
-              render={() => <LoginForm updateUser={this.updateUser} />}
+              render={() => <LoginForm getUser updateUser={this.updateUser} />}
             />
             <Route path="/signup" render={() => <Signup />} />
           </Switch>
