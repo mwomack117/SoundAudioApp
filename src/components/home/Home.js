@@ -29,7 +29,7 @@ class Home extends Component {
 
         <div>
           <SearchBar onFormSubmit={this.onTermSubmit} />
-          <AudioList audios={this.state.audios} />
+          <AudioList audios={this.state.audios} userId={this.props.userId} />
         </div>
       </div>
     );
