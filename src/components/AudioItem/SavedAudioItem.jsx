@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import {
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  Button,
-  CardText
-} from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
 
 const style = {
   marginTop: "25px",
