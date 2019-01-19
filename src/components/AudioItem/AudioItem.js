@@ -1,6 +1,16 @@
 import React from "react";
 import ReactAudioPlayer from "react-audio-player";
 import axios from "axios";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  Button,
+  CardText,
+  Row,
+  Col
+} from "reactstrap";
 
 const handleSavedSound = event => {
   console.log("Sound saved to DB");
@@ -12,17 +22,28 @@ const handleSavedSound = event => {
   });
 };
 
+const style = {
+  marginTop: "25px",
+  display: "inline-block",
+  marginLeft: "25px"
+};
+
 const AudioItem = ({ audio }) => {
   return (
-    <div>
-      <label>{audio.name}</label>
-      <br />
-      <ReactAudioPlayer src={audio.previews[`preview-hq-mp3`]} controls />
-      <button value={audio.id} onClick={handleSavedSound}>
-        Save Sound
-      </button>
-      {console.log(audio.id)}
-      <hr />
+    <div style={style}>
+      <Card>
+        <CardTitle>{audio.name}</CardTitle>
+        <CardImg top src={audio.images["waveform_m"]} />
+        <CardBody>
+          <CardText>
+            <ReactAudioPlayer src={audio.previews[`preview-hq-mp3`]} controls />
+          </CardText>
+          <Button value={audio.id} onClick={handleSavedSound}>
+            Save Sound
+          </Button>
+          {console.log(audio.id)}
+        </CardBody>
+      </Card>
     </div>
   );
 };

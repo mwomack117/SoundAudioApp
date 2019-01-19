@@ -16,48 +16,52 @@ class App extends Component {
       username: null
     };
 
-    this.getUser = this.getUser.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
+    // this.getUser = this.getUser.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {
-    this.getUser();
-  }
+  // componentDidMount() {
+  //   this.getUser();
+  // }
 
   updateUser(userObject) {
     this.setState(userObject);
   }
 
   // ??? getUser ???
-  getUser() {
-    axios.get("/user/").then(response => {
-      console.log("Get user response: ");
-      console.log(response.data);
-      if (response.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
+  // getUser() {
+  //   axios.get("/user/").then(response => {
+  //     console.log("Get user response: ");
+  //     console.log(response.data);
+  //     if (response.data.user) {
+  //       console.log("Get User: There is a user saved in the server session: ");
 
-        this.setState({
-          loggedIn: true,
-          username: response.data.user.username,
-          user: response.data.user
-        });
-      } else {
-        console.log("Get user: no user");
-        this.setState({
-          loggedIn: false,
-          username: null
-        });
-      }
-    });
-  }
+  //       this.setState({
+  //         loggedIn: true,
+  //         username: response.data.user.username,
+  //         user: response.data.user
+  //       });
+  //     } else {
+  //       console.log("Get user: no user");
+  //       this.setState({
+  //         loggedIn: false,
+  //         username: null
+  //       });
+  //     }
+  //   });
+  // }
 
   render() {
     return (
       <div className="App">
         <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
-        {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
+        {this.state.loggedIn && (
+          <p style={{ marginTop: 15 }}>
+            Join the party, {this.state.username}!
+          </p>
+        )}
         {/* Routes to different components */}
         {this.state.loggedIn ? (
           /**Logged in options */
