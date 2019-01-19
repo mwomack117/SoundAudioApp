@@ -9,11 +9,11 @@ import axios from 'axios';
 class Home extends Component {
   constructor(props) {
     super(props);
-  this.state = {
-    audios: [],
-    saved: []
-  };
-}
+    this.state = {
+      audios: [],
+      saved: []
+    };
+  }
 
   onTermSubmit = async searchTerm => {
     const response = await API.getSounds(searchTerm);
@@ -25,43 +25,39 @@ class Home extends Component {
   };
 
 
-  componentDidMount () {
+  componentDidMount() {
     console.log(this.state.saved);
     console.log(this.state.audios);
-    
+    axios.get(`/user/saved/${this.props.userId}`)
+      .then(response => {
+        // console.log(response)
+        this.setState({
+          saved: response.data
+        })
+      })
+
   }
 
-  loadPlaylist = () => {
-    axios.get(`/user/saved/${this.props.userId}`)
-    .then(response => {
-      // console.log(response)
-      this.setState({
-        saved: response.data
-      })
-    })
-  }
+
 
   render() {
     return (
       <div className="background">
         {this.props.loggedIn ? <p>User Logged In</p> : <p>No User Logged In</p>}
         <p>It's good to be home</p>
-        <button onClick={this.loadPlaylist}>load sounds</button>
-
-        <div>
+        <div className = "searchResults">
           <SearchBar onFormSubmit={this.onTermSubmit} />
+          <h1>Search Results</h1>
           <AudioList audios={this.state.audios} userId={this.props.userId} />
           <br />
+          <hr />
           <br />
-          <br />
-          <br />
-          <br />
-
-          <SavedAudioList audios={this.state.saved}/>
-
-
         </div>
-      </div>
+        <div className = "savedResults">
+          <h1>Saved Sounds</h1>
+          <SavedAudioList audios={this.state.saved} />
+        </div>
+      </div >
     );
   }
 }
