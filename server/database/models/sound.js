@@ -6,7 +6,8 @@ const SoundSchema = new Schema({
   soundId: { type: Number },
   preview: { type: String },
   user_id: { type: String },
-  name: { type: String }
+  name: { type: String },
+  image: { type: String }
 });
 
 const Sounds = mongoose.model("Sounds", SoundSchema);

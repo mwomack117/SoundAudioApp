@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactAudioPlayer from "react-audio-player";
+import axios from "axios";
 import {
   Card,
   CardImg,
@@ -28,7 +29,8 @@ class AudioItem extends Component {
     axios.post(`/user/sound/${this.props.userId}`, {
       soundId: this.props.audio.id,
       preview: this.props.audio.previews[`preview-hq-mp3`],
-      name: this.props.audio.name
+      name: this.props.audio.name,
+      image: this.props.audio.images["waveform_m"]
     });
   };
 
@@ -54,7 +56,6 @@ class AudioItem extends Component {
       </div>
     );
   }
-
 }
 
 export default AudioItem;
