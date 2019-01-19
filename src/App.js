@@ -20,11 +20,17 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {}
+
+
+  componentDidMount() {
+  }
+
 
   updateUser(userObject) {
     this.setState(userObject);
   }
+
+
 
   render() {
     return (
@@ -44,7 +50,7 @@ class App extends Component {
               exact
               path="/"
               component={() => (
-                <Home user={this.state.user} loggedIn={this.state.loggedIn} />
+                <Home user={this.state.user} userId={this.state.userId} loggedIn={this.state.loggedIn} />
               )}
             />
             <Route
@@ -63,7 +69,7 @@ class App extends Component {
             />
             <Route
               path="/login"
-              render={() => <LoginForm updateUser={this.updateUser} />}
+              render={() => <LoginForm getUser updateUser={this.updateUser} />}
             />
             <Route path="/signup" render={() => <Signup />} />
           </Switch>

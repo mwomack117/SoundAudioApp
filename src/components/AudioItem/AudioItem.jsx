@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import axios from "axios";
 import {
   Card,
   CardImg,
@@ -37,24 +36,25 @@ class AudioItem extends Component {
     return (
       <div style={style}>
         <Card>
-          <CardTitle>{audio.name}</CardTitle>
-          <CardImg top src={audio.images["waveform_m"]} />
+          <CardTitle>{this.props.audio.name}</CardTitle>
+          <CardImg top src={this.props.audio.images["waveform_m"]} />
           <CardBody>
             <CardText>
               <ReactAudioPlayer
-                src={audio.previews[`preview-hq-mp3`]}
+                src={this.props.audio.previews[`preview-hq-mp3`]}
                 controls
               />
             </CardText>
-            <Button value={audio.id} onClick={handleSavedSound}>
+            <Button value={this.props.audio.id} onClick={this.handleSavedSound}>
               Save Sound
             </Button>
-            {console.log(audio.id)}
+            {console.log(this.props.audio.id)}
           </CardBody>
         </Card>
       </div>
     );
   }
+
 }
 
 export default AudioItem;
