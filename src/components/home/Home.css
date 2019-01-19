@@ -5,3 +5,19 @@
 p {
   margin-left: 25px;
 }
+
+.searchResults {
+  width: 48%;
+  float: left;
+  border-style: solid;
+  padding: 10px;
+
+}
+
+.savedResults {
+  width: 48%;
+  float: right;
+  border-style: solid;
+  padding: 10px;
+
+}
