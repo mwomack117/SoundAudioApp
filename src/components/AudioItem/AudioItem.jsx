@@ -9,11 +9,14 @@ class AudioItem extends Component {
  handleSavedSound = event => {
   console.log("Sound saved to DB");
   event.preventDefault();
+  console.log(this.props.audio);
+
 
   //request to server to add a new username/password
   axios.post(`/user/sound/${this.props.userId}`, {
     soundId: this.props.audio.id,
-    preview: this.props.audio.previews[`preview-hq-mp3`]
+    preview: this.props.audio.previews[`preview-hq-mp3`],
+    name: this.props.audio.name
   });
 };
   render (){
@@ -25,7 +28,7 @@ class AudioItem extends Component {
       <button value={this.props.audio.id} onClick={this.handleSavedSound}>
         Save Sound
       </button>
-      {console.log(this.props.audio.id)}
+     
       <hr />
     </div>
   );
