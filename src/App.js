@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // components
@@ -13,44 +12,19 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      userId: null
     };
 
-    // this.getUser = this.getUser.bind(this);
-    // this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getUser();
-  // }
+  componentDidMount() {}
 
   updateUser(userObject) {
     this.setState(userObject);
   }
-
-  // ??? getUser ???
-  // getUser() {
-  //   axios.get("/user/").then(response => {
-  //     console.log("Get user response: ");
-  //     console.log(response.data);
-  //     if (response.data.user) {
-  //       console.log("Get User: There is a user saved in the server session: ");
-
-  //       this.setState({
-  //         loggedIn: true,
-  //         username: response.data.user.username,
-  //         user: response.data.user
-  //       });
-  //     } else {
-  //       console.log("Get user: no user");
-  //       this.setState({
-  //         loggedIn: false,
-  //         username: null
-  //       });
-  //     }
-  //   });
-  // }
 
   render() {
     return (
