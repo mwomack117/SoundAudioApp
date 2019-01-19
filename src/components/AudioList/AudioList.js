@@ -1,5 +1,6 @@
 import React from "react";
-import AudioItem from "../AudioItem";
+import AudioItem from "../AudioItem/AudioItem";
+
 
 const AudioList = ({ audios, userId }) => {
   const renderedList = audios.map(audio => {

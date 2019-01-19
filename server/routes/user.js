@@ -31,18 +31,35 @@ router.post("/", (req, res) => {
 });
 
 router.post("/sound/:userId", (req, res) => {
-  console.log(req.params.userId);
-  
   console.log("save sound");
   console.log(req.body);
+  console.log(req.params.userId);
   const newSound = new Sounds({
-    soundId: req.body.soundId
+    soundId: req.body.soundId,
+    preview: req.body.preview,
+    user_id: req.params.userId,
+    name: req.body.name
+
   });
   newSound.save((err, savedSound) => {
+    console.log(err);
+    
     if (err) return res.json(err);
     res.json(savedSound);
   });
 });
+
+
+
+router.get("/saved/:userId", (req,res) => {
+  console.log("worx");
+  console.log(req.params.userId);
+  Sounds.find({user_id:req.params.userId})
+  .then (data => {
+    res.send(data)
+
+  })
+})
 
 ///////////////////////////////////
 // router.post("/sound", (req, res) => {
