@@ -43,7 +43,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="background">
         {this.props.loggedIn ? <p>User Logged In</p> : <p>No User Logged In</p>}
         <p>It's good to be home</p>
         <button onClick={this.loadPlaylist}>load sounds</button>

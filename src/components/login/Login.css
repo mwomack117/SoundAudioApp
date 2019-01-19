@@ -1,15 +1,3 @@
-/* .form-div {
-  text-align: center;
-  background: url("https://media.tenor.com/images/7cbb91ac1e33cd4fb85c8509e6acca9c/raw")
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 65vh;
-  padding-top: 2vh;
-} */
-
 .signInForm {
   background-color: white;
   width: 350px;
@@ -20,21 +8,26 @@
 }
 
 .login-page-div {
-  /* background-color: lightblue;
-  height: 50vh;
-  padding-top: 2vh;
-  margin-bottom: 2vh; */
-
-  /* text-align: center; */
-  /* background: url("https://media.tenor.com/images/7cbb91ac1e33cd4fb85c8509e6acca9c/raw")
-    no-repeat center center fixed; */
   background: url("https://www.unlockunit.com/blog/wp-content/uploads/2018/02/sound-waves.jpg")
     no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 75vh;
+  height: 65vh;
   padding-top: 2vh;
   box-shadow: 0 5px 15px 5px lightslategrey;
+}
+
+.preview-button {
+  /* margin-top: 2vh; */
+  /* width: 14%;
+  margin-top: 2vh;
+  margin-left: 42%;
+  margin-right: 42%; */
+}
+
+.login-content {
+  margin-top: 2vh;
+  text-align: center;
 }

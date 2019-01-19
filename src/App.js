@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // components
@@ -21,8 +20,11 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
+
+
   componentDidMount() {
   }
+
 
   updateUser(userObject) {
     this.setState(userObject);
@@ -35,7 +37,11 @@ class App extends Component {
       <div className="App">
         <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
-        {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
+        {this.state.loggedIn && (
+          <p style={{ marginTop: 15 }}>
+            Join the party, {this.state.username}!
+          </p>
+        )}
         {/* Routes to different components */}
         {this.state.loggedIn ? (
           /**Logged in options */
