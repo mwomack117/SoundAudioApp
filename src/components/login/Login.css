@@ -8,13 +8,14 @@
 }
 
 .login-page-div {
-  background: url("https://www.unlockunit.com/blog/wp-content/uploads/2018/02/sound-waves.jpg")
-    no-repeat center center fixed;
+  background: url("https://www.unlockunit.com/blog/wp-content/uploads/2018/02/sound-waves.jpg");
+  /* background: url("./sound-wave.jpg"); */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 65vh;
+  background-position: 50%;
   padding-top: 2vh;
   box-shadow: 0 5px 15px 5px lightslategrey;
 }

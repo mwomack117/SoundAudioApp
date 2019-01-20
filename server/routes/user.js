@@ -57,36 +57,6 @@ router.get("/saved/:userId", (req, res) => {
   });
 });
 
-///////////////////////////////////
-// router.post("/sound", (req, res) => {
-//   console.log("save sound");
-//   console.log(req);
-//   const newSound = new Sounds({
-//     soundId: req.body.soundId
-//   });
-//   newSound.create(req.body);
-//   console
-//     .log(req.body)
-//     .then(function(dbSound) {
-//       return User.findOneAndUpdate(
-//         { username: "mike@mike.com" },
-//         { $push: { sounds: dbSound._id } },
-//         { new: true }
-//       );
-//     })
-//     .then(function(dbUser) {
-//       res.json(dbUser);
-//     })
-//     .catch(function(err) {
-//       res.json(err);
-//     });
-//   newSound.save((err, savedSound) => {
-//     if (err) return res.json(err);
-//     res.json(savedSound);
-//   });
-// });
-////////////////////////////////////////////
-
 router.post(
   "/login",
   function(req, res, next) {
@@ -94,7 +64,7 @@ router.post(
   },
   passport.authenticate("local"),
   (req, res) => {
-    console.log("logged in", req.user);
+    console.log("POST to /login", req.user);
     var userInfo = {
       username: req.user.username,
       _id: req.user._id

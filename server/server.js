@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 8080;
 const user = require("./routes/user");
 
 // Define middleware here
+app.use(morgan("dev"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
