@@ -4,7 +4,7 @@
   padding: 10px;
   border: gray solid 2px;
   border-radius: 8px;
-  margin-top: 5vh;
+  margin-top: 2vh;
 }
 
 .login-page-div {
@@ -18,17 +18,14 @@
   background-position: 50%;
   padding-top: 2vh;
   box-shadow: 0 5px 15px 5px lightslategrey;
-}
-
-.preview-button {
-  /* margin-top: 2vh; */
-  /* width: 14%;
-  margin-top: 2vh;
-  margin-left: 42%;
-  margin-right: 42%; */
+  text-align: center;
 }
 
 .login-content {
   margin-top: 2vh;
   text-align: center;
+}
+
+.form-toggle {
+  margin: 0 auto;
 }
