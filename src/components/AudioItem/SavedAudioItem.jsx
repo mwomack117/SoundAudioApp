@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import axios from "axios";
 
 const style = {
   marginTop: "25px",
@@ -11,9 +12,21 @@ const style = {
 class SavedAudioItem extends Component {
   constructor(props) {
     super(props);
+    // debugger;
   }
 
   componentDidMount() {}
+
+  handleDeleteSound = event => {
+    event.preventDefault();
+
+    //request to server to add a new username/password
+    axios.get(`user/sound/delete/${this.props.audio._id}`)
+    // .then(data=> {
+    //   console.log(data);
+      
+    // });
+  };
 
   render() {
     return (
@@ -25,6 +38,9 @@ class SavedAudioItem extends Component {
             <CardText>
               <ReactAudioPlayer src={this.props.audio.preview} controls />
             </CardText>
+            <Button value={this.props.audio._id} onClick={this.handleDeleteSound}>
+              Delete Sound
+            </Button>
           </CardBody>
         </Card>
       </div>

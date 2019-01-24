@@ -7,9 +7,15 @@ const passport = require("../passport");
 router.post("/", (req, res) => {
   console.log("user signup");
 
-  const { name, username, password } = req.body;
+  const {
+    name,
+    username,
+    password
+  } = req.body;
   // ADD VALIDATION
-  User.findOne({ username: username }, (err, user) => {
+  User.findOne({
+    username: username
+  }, (err, user) => {
     if (err) {
       console.log("User.js post error: ", err);
     } else if (user) {
@@ -49,17 +55,35 @@ router.post("/sound/:userId", (req, res) => {
   });
 });
 
+// Delete saved Sound
+router.get("/sound/delete/:soundId", (req, res) => {
+  console.log(req.params.soundId);
+  Sounds.findByIdAndRemove(req.params.soundId, (err, sound) => {
+    // As always, handle any potential errors:
+    if (err) return res.status(500).send(err);
+    // We'll create a simple object to send back with a message and the id of the document that was removed
+    // You can really do this however you want, though.
+    const response = {
+      message: "Sound successfully deleted",
+      id: req.params.soundId
+    };
+    return res.status(200).send(response);
+  })
+});
+
 router.get("/saved/:userId", (req, res) => {
   console.log("worx");
   console.log(req.params.userId);
-  Sounds.find({ user_id: req.params.userId }).then(data => {
+  Sounds.find({
+    user_id: req.params.userId
+  }).then(data => {
     res.send(data);
   });
 });
 
 router.post(
   "/login",
-  function(req, res, next) {
+  function (req, res, next) {
     next();
   },
   passport.authenticate("local"),
@@ -77,18 +101,26 @@ router.get("/", (req, res, next) => {
   console.log("===== user!!======");
   console.log(req.user);
   if (req.user) {
-    res.json({ user: req.user });
+    res.json({
+      user: req.user
+    });
   } else {
-    res.json({ user: null });
+    res.json({
+      user: null
+    });
   }
 });
 
 router.post("/logout", (req, res) => {
   if (req.user) {
     req.logout();
-    res.send({ msg: "logging out" });
+    res.send({
+      msg: "logging out"
+    });
   } else {
-    res.send({ msg: "no user to log out" });
+    res.send({
+      msg: "no user to log out"
+    });
   }
 });
 
