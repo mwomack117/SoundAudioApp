@@ -63,6 +63,10 @@ class NavBar extends Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto nav" navbar>
+                <div className="current-user">
+                  <i className="fas fa-user" style={{ fontSize: 24 }} />
+                  <p>{this.props.username}</p>
+                </div>
                 <NavItem>
                   <Link
                     to="#"
@@ -98,46 +102,6 @@ class NavBar extends Component {
           </Navbar>
         )}
       </div>
-
-      // <React.Fragment>
-      //   <nav>
-      //     <div className="nav-wrapper">
-      //       <a href="#" className="brand-logo">
-      //         BrandLogo
-      //       </a>
-      //       <a href="#" data-target="mobile-demo" className="sidenav-trigger">
-      //         <i className="material-icons">menu</i>
-      //       </a>
-      //       {loggedIn ? (
-      //         <ul id="nav-mobile" className="right hide-on-med-and-down">
-      //           <li>
-      //             <Link
-      //               to="#"
-      //               className=""
-      //               style={linkStyle}
-      //               onClick={this.logout}
-      //             >
-      //               <span className="">logout</span>
-      //             </Link>
-      //           </li>
-      //         </ul>
-      //       ) : (
-      //         <ul className="right hide-on-med-and-down">
-      //           <li>
-      //             <Link to="/login" className="" style={linkStyle}>
-      //               <span className="">login</span>
-      //             </Link>
-      //           </li>
-      //           <li>
-      //             <Link to="/signup" className="" style={linkStyle}>
-      //               <span className="">sign up</span>
-      //             </Link>
-      //           </li>
-      //         </ul>
-      //       )}
-      //     </div>
-      //   </nav>
-      // </React.Fragment>
     );
   }
 }

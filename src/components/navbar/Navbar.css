@@ -12,3 +12,14 @@
 .nav {
   margin-right: 15px;
 }
+
+.current-user {
+  color: white;
+  display: inherit;
+  margin-right: 20px;
+}
+
+.current-user p {
+  margin: auto 0;
+  margin-left: 15px;
+}

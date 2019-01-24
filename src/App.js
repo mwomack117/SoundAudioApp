@@ -20,22 +20,20 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
-
-
-  componentDidMount() {
-  }
-
+  componentDidMount() {}
 
   updateUser(userObject) {
     this.setState(userObject);
   }
 
-
-
   render() {
     return (
       <div className="App">
-        <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        <NavBar
+          updateUser={this.updateUser}
+          loggedIn={this.state.loggedIn}
+          username={this.state.username}
+        />
         {/* greet user if logged in: */}
         {this.state.loggedIn && (
           <p style={{ marginTop: 15 }}>
@@ -50,7 +48,11 @@ class App extends Component {
               exact
               path="/"
               component={() => (
-                <Home user={this.state.user} userId={this.state.userId} loggedIn={this.state.loggedIn} />
+                <Home
+                  user={this.state.user}
+                  userId={this.state.userId}
+                  loggedIn={this.state.loggedIn}
+                />
               )}
             />
             <Route

@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar";
 import AudioList from "../AudioList/AudioList";
 import SavedAudioList from "../AudioList/SavedAudioList";
 import "./Home.css";
-import axios from 'axios';
+import axios from "axios";
 
 class Home extends Component {
   constructor(props) {
@@ -24,28 +24,32 @@ class Home extends Component {
     });
   };
 
-
   componentDidMount() {
     console.log(this.state.saved);
     console.log(this.state.audios);
-    axios.get(`/user/saved/${this.props.userId}`)
-      .then(response => {
-        // console.log(response)
-        this.setState({
-          saved: response.data
-        })
-      })
-
+    axios.get(`/user/saved/${this.props.userId}`).then(response => {
+      // console.log(response)
+      this.setState({
+        saved: response.data
+      });
+    });
   }
 
-
+  // componentWillUpdate() {
+  //   axios.get(`/user/saved/${this.props.userId}`).then(response => {
+  //     // console.log(response)
+  //     this.setState({
+  //       saved: response.data
+  //     });
+  //   });
+  // }
 
   render() {
     return (
       <div className="background">
         {this.props.loggedIn ? <p>User Logged In</p> : <p>No User Logged In</p>}
         <p>It's good to be home</p>
-        <div className = "searchResults">
+        <div className="searchResults">
           <SearchBar onFormSubmit={this.onTermSubmit} />
           <h1>Search Results</h1>
           <AudioList audios={this.state.audios} userId={this.props.userId} />
@@ -53,11 +57,11 @@ class Home extends Component {
           <hr />
           <br />
         </div>
-        <div className = "savedResults">
+        <div className="savedResults">
           <h1>Saved Sounds</h1>
           <SavedAudioList audios={this.state.saved} />
         </div>
-      </div >
+      </div>
     );
   }
 }

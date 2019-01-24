@@ -25,13 +25,14 @@ class AudioItem extends Component {
     event.preventDefault();
     console.log(this.props.audio);
 
-    //request to server to add a new username/password
-    axios.post(`/user/sound/${this.props.userId}`, {
-      soundId: this.props.audio.id,
-      preview: this.props.audio.previews[`preview-hq-mp3`],
-      name: this.props.audio.name,
-      image: this.props.audio.images["waveform_m"]
-    });
+    axios
+      .post(`/user/sound/${this.props.userId}`, {
+        soundId: this.props.audio.id,
+        preview: this.props.audio.previews[`preview-hq-mp3`],
+        name: this.props.audio.name,
+        image: this.props.audio.images["waveform_m"]
+      })
+      .then(() => {});
   };
 
   render() {
