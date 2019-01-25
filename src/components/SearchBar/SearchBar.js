@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input, FormBtn } from "../Form";
+import "./SearchBar.css"
 
 class SearchBar extends Component {
   state = {
@@ -19,7 +20,8 @@ class SearchBar extends Component {
     return (
       <div>
         <form>
-          <Input
+          <Input 
+            className="searchBar"
             value={this.state.searchTerm}
             onChange={this.onInputChange}
             name="searchTerm"
