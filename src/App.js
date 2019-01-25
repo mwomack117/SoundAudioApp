@@ -13,17 +13,23 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: null,
-      userId: null
+      userId: null,
+      name: null
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {}
-
+  componentDidMount() {
+    console.log(this.state);
+    
+    
+  }
+  
   updateUser(userObject) {
     this.setState(userObject);
+    console.log(userObject);
   }
 
   render() {
@@ -33,13 +39,9 @@ class App extends Component {
           updateUser={this.updateUser}
           loggedIn={this.state.loggedIn}
           username={this.state.username}
+          name={this.state.name}
         />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn && (
-          <p style={{ marginTop: 15 }}>
-            Join the party, {this.state.username}!
-          </p>
-        )}
+        
         {/* Routes to different components */}
         {this.state.loggedIn ? (
           /**Logged in options */
@@ -52,6 +54,9 @@ class App extends Component {
                   user={this.state.user}
                   userId={this.state.userId}
                   loggedIn={this.state.loggedIn}
+                  username={this.state.username}
+                  name={this.state.name}
+
                 />
               )}
             />

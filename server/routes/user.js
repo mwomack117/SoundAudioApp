@@ -91,7 +91,8 @@ router.post(
     console.log("POST to /login", req.user);
     var userInfo = {
       username: req.user.username,
-      _id: req.user._id
+      _id: req.user._id,
+      name: req.user.name
     };
     res.send(userInfo);
   }

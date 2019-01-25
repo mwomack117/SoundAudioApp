@@ -4,7 +4,7 @@ export const FormBtn = props => (
   <button
     {...props}
     style={{ marginLeft: 25, marginTop: 10 }}
-    className="btn btn-success"
+    className="btn btn-warning"
   >
     {props.children}
   </button>

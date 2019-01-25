@@ -23,6 +23,7 @@ class LoginForm extends Component {
     this.state = {
       username: "",
       password: "",
+      name: "",
       redirectTo: null,
       audios: [],
       collapse: false,
@@ -71,7 +72,8 @@ class LoginForm extends Component {
     axios
       .post("/user/login", {
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        name: this.state.name
       })
       .then(response => {
         console.log("login response: ");
@@ -82,7 +84,8 @@ class LoginForm extends Component {
           this.props.updateUser({
             loggedIn: true,
             username: response.data.username,
-            userId: response.data._id
+            userId: response.data._id,
+            name: response.data.name
           });
           // update the state to redirect to home
           this.setState({

@@ -37,36 +37,37 @@ class Home extends Component {
 
 
   updateSavedSounds = (saved) => {
-    this.setState ({
+    this.setState({
       saved
     })
   }
 
-  // componentWillUpdate () {
-  //   // axios.get(`/user/saved/${this.props.userId}`).then(response => {
-  //     // console.log(response)
-  //     this.setState({
-  //       saved: response.data
-  //     });
-  //   // });
-  // }
+
 
   render() {
     return (
       <div className="background">
-        {this.props.loggedIn ? <p>User Logged In</p> : <p>No User Logged In</p>}
-        <p>It's good to be home</p>
+        <div className="jumbotron">
+          <div className="jumboTitle">Welcome Back {this.props.name}!
+          </div>
+          <div className="SearchBar">
+
+            <SearchBar onFormSubmit={this.onTermSubmit} />
+
+          </div>
+          {this.props.loggedIn ? null : <p>No User Logged In</p>}
+        </div>
+
         <div className="searchResults">
-          <SearchBar onFormSubmit={this.onTermSubmit} />
           <h1>Search Results</h1>
-          <AudioList audios={this.state.audios} userId={this.props.userId} updateSounds = {this.updateSavedSounds} />
+          <AudioList audios={this.state.audios} userId={this.props.userId} updateSounds={this.updateSavedSounds} />
           <br />
           <hr />
           <br />
         </div>
         <div className="savedResults">
           <h1>Saved Sounds</h1>
-          <SavedAudioList audios={this.state.saved} userId={this.props.userId} updateSounds = {this.updateSavedSounds}/>
+          <SavedAudioList audios={this.state.saved} userId={this.props.userId} updateSounds={this.updateSavedSounds} />
         </div>
       </div>
     );
