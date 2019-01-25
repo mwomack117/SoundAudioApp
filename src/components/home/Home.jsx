@@ -24,7 +24,7 @@ class Home extends Component {
     });
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     console.log(this.state.saved);
     console.log(this.state.audios);
     axios.get(`/user/saved/${this.props.userId}`).then(response => {
@@ -35,13 +35,20 @@ class Home extends Component {
     });
   }
 
-  // componentWillUpdate() {
-  //   axios.get(`/user/saved/${this.props.userId}`).then(response => {
+
+  updateSavedSounds = (saved) => {
+    this.setState ({
+      saved
+    })
+  }
+
+  // componentWillUpdate () {
+  //   // axios.get(`/user/saved/${this.props.userId}`).then(response => {
   //     // console.log(response)
   //     this.setState({
   //       saved: response.data
   //     });
-  //   });
+  //   // });
   // }
 
   render() {
@@ -52,14 +59,14 @@ class Home extends Component {
         <div className="searchResults">
           <SearchBar onFormSubmit={this.onTermSubmit} />
           <h1>Search Results</h1>
-          <AudioList audios={this.state.audios} userId={this.props.userId} />
+          <AudioList audios={this.state.audios} userId={this.props.userId} updateSounds = {this.updateSavedSounds} />
           <br />
           <hr />
           <br />
         </div>
         <div className="savedResults">
           <h1>Saved Sounds</h1>
-          <SavedAudioList audios={this.state.saved} />
+          <SavedAudioList audios={this.state.saved} userId={this.props.userId} updateSounds = {this.updateSavedSounds}/>
         </div>
       </div>
     );

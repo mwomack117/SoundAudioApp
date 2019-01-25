@@ -32,8 +32,16 @@ class AudioItem extends Component {
         name: this.props.audio.name,
         image: this.props.audio.images["waveform_m"]
       })
-      .then(() => {});
-  };
+      .then(response => {
+        axios.get(`/user/saved/${this.props.userId}`)
+        .then(response => {
+          console.log(response)
+          this.props.updateSounds(
+            response.data
+          );
+        });
+      })
+  }
 
   render() {
     return (

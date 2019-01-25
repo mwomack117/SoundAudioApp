@@ -15,18 +15,23 @@ class SavedAudioItem extends Component {
     // debugger;
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   handleDeleteSound = event => {
     event.preventDefault();
 
     //request to server to add a new username/password
     axios.get(`user/sound/delete/${this.props.audio._id}`)
-    // .then(data=> {
-    //   console.log(data);
-      
-    // });
-  };
+      .then(data => {
+        axios.get(`/user/saved/${this.props.userId}`)
+        .then(response => {
+          console.log(response)
+          this.props.updateSounds(
+            response.data
+          );
+        });
+      })
+  }
 
   render() {
     return (
