@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
-    "heroku-postbuild": "yarn add --only=dev && yarn add && yarn build"
+    "heroku-postbuild": "yarn && yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
