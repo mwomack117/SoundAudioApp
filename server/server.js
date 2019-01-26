@@ -6,6 +6,7 @@ const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const app = express();
 const PORT = process.env.PORT || 8080;
+const path = require("path");
 // Route requires
 const user = require("./routes/user");
 
@@ -35,6 +36,10 @@ app.use(passport.session()); // calls the deserializeUser
 
 // Routes
 app.use("/user", user);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // Starting Server
 app.listen(PORT, () => {
