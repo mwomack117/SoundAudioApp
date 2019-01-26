@@ -87,14 +87,18 @@ class NavBar extends Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto nav" navbar>
-                <NavItem>
-                  <Link to="/login" className="text-white links">
-                    Log In
+                {/* <NavItem>
+                  <Link to="/upload" className="text-white links">
+                    Upload
                   </Link>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
-                  <Link to="/signup" className="text-white links">
-                    Sign Up
+                  <i
+                    className="fas fa-phone"
+                    style={{ fontSize: 20, color: "white" }}
+                  />
+                  <Link to="/contact" className="text-white links">
+                    Contact
                   </Link>
                 </NavItem>
               </Nav>

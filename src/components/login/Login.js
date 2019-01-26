@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import API from "../../utils/API";
-import AudioList from "../AudioList";
-// import Sound from "../SoundContainer/SoundContainer";
+import PreviewList from "../AudioList/PreviewList";
+import Signup from "../signup";
 import {
   Container,
   Col,
@@ -14,7 +14,7 @@ import {
   Input,
   Button,
   FormFeedback,
-  Collapse
+  Modal
 } from "reactstrap";
 
 class LoginForm extends Component {
@@ -26,7 +26,7 @@ class LoginForm extends Component {
       name: "",
       redirectTo: null,
       audios: [],
-      collapse: false,
+      modal: false,
       validate: {
         emailState: ""
       }
@@ -36,7 +36,7 @@ class LoginForm extends Component {
   }
 
   toggle = () => {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({ modal: !this.state.modal });
   };
 
   handlePreview = async event => {
@@ -106,84 +106,96 @@ class LoginForm extends Component {
       return (
         <div>
           <div className="login-page-div">
-            <Button
-              className="form-toggle"
-              color="success"
-              onClick={this.toggle}
-              style={{ marginBottom: "1rem" }}
-            >
-              Log In
-            </Button>
-            <Collapse isOpen={this.state.collapse}>
-              <Container className="signInForm">
-                <h2 className="text-center mb-3">
-                  <i className="mr-2 fas fa-sign-in-alt" />
-                  Log In
-                </h2>
-                <Form className="form">
-                  <Col>
-                    <FormGroup>
-                      <Label for="exampleusername">username</Label>
-                      <Input
-                        className="form-input"
-                        type="username"
-                        id="username"
-                        name="username"
-                        placeholder="username"
-                        valid={this.state.validate.emailState === "has-success"}
-                        invalid={
-                          this.state.validate.emailState === "has-danger"
-                        }
-                        value={this.state.email}
-                        onChange={e => {
-                          this.validateEmail(e);
-                          this.handleChange(e);
-                        }}
-                      />
-                      <FormFeedback valid>
-                        That's a valid looking email you've got there.
-                      </FormFeedback>
-                      <FormFeedback>Please input a valid email.</FormFeedback>
-                    </FormGroup>
-                  </Col>
+            <div className="btn-inline">
+              <Button
+                className="form-toggle"
+                color="warning"
+                onClick={this.toggle}
+                style={{ marginBottom: "1rem" }}
+                size="lg"
+              >
+                Log In
+              </Button>
+              <Signup />
+              <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                <Container className="signInForm">
+                  <h2 className="text-center mb-3">
+                    <i className="mr-2 fas fa-sign-in-alt" />
+                    Log In
+                    <button
+                      type="button"
+                      onClick={this.toggle}
+                      className="close"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </h2>
 
-                  <Col>
-                    <FormGroup>
-                      <Label for="examplePassword">Password</Label>
-                      <Input
-                        className="form-input"
-                        placeholder="password"
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                      />
-                      <FormFeedback>Uh oh! Wrong password.</FormFeedback>
-                    </FormGroup>
-                  </Col>
-                  <Button
-                    className="btn"
-                    color="primary"
-                    onClick={this.handleSubmit}
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                  <p className="mt-3 ml-1">
-                    No Account? <a href="/signup"> Register</a>
-                  </p>
-                </Form>
-              </Container>
-            </Collapse>
+                  <Form className="form">
+                    <Col>
+                      <FormGroup>
+                        <Label for="exampleusername">Email</Label>
+                        <Input
+                          className="form-input"
+                          type="username"
+                          id="username"
+                          name="username"
+                          placeholder="user@email.com"
+                          valid={
+                            this.state.validate.emailState === "has-success"
+                          }
+                          invalid={
+                            this.state.validate.emailState === "has-danger"
+                          }
+                          value={this.state.email}
+                          onChange={e => {
+                            this.validateEmail(e);
+                            this.handleChange(e);
+                          }}
+                        />
+                        <FormFeedback valid>
+                          That's a valid looking email you've got there.
+                        </FormFeedback>
+                        <FormFeedback>Please input a valid email.</FormFeedback>
+                      </FormGroup>
+                    </Col>
+
+                    <Col>
+                      <FormGroup>
+                        <Label for="examplePassword">Password</Label>
+                        <Input
+                          className="form-input"
+                          placeholder="password"
+                          type="password"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                        />
+                        <FormFeedback>Uh oh! Wrong password.</FormFeedback>
+                      </FormGroup>
+                    </Col>
+                    <Button
+                      className="btn"
+                      color="primary"
+                      onClick={this.handleSubmit}
+                      type="submit"
+                    >
+                      Submit
+                    </Button>
+                  </Form>
+                </Container>
+              </Modal>
+            </div>
           </div>
           <div className="login-content">
             <Button
-              className="preview-button btn-success"
+              className="preview-button btn-warning"
               onClick={this.handlePreview}
             >
               Click for a preview
             </Button>
-            <AudioList className="list" audios={this.state.audios} />
+            <PreviewList className="list" audios={this.state.audios} />
           </div>
         </div>
       );

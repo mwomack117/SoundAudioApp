@@ -9,7 +9,7 @@ export default {
   // show sound previews on login page
   loginSounds: function() {
     return axios.get(
-      `https://freesound.org/apiv2/search/text/?query=lion&fields=name,id,previews,images&token=x5Hs2Kk9Jn3YjFmKB8A9hj9fue9bjFGnid4ua53j`
+      `https://freesound.org/apiv2/search/text/?query=cat&fields=name,id,previews,images&token=x5Hs2Kk9Jn3YjFmKB8A9hj9fue9bjFGnid4ua53j`
     );
   }
 };
