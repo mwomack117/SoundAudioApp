@@ -11,7 +11,8 @@ import {
   Input,
   Button,
   Modal,
-  FormFeedback
+  FormFeedback,
+  Alert
 } from "reactstrap";
 
 class Signup extends Component {
@@ -25,6 +26,7 @@ class Signup extends Component {
       errorMsg: "",
       redirectTo: null,
       modal: false,
+      visible: false,
       validate: {
         emailState: ""
       }
@@ -32,6 +34,10 @@ class Signup extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  onDismiss = () => {
+    this.setState({ visible: true });
+  };
 
   handleChange(event) {
     this.setState({
@@ -95,6 +101,11 @@ class Signup extends Component {
     }
 
     this.toggle();
+    this.onDismiss();
+    setTimeout(() => {
+      this.setState({ visible: false });
+    }, 2500);
+
     //request to server to add a new email/password
     axios
       .post("/user/", {
@@ -106,11 +117,11 @@ class Signup extends Component {
         console.log(response);
         if (!response.data.errmsg) {
           console.log("successful signup");
-          this.setState({
-            //redirect to login page
-            // redirectTo: "/login"
-            redirect: true
-          });
+          // this.setState({
+          //redirect to login page
+          // redirectTo: "/login"
+          // redirect: true
+          // });
         } else {
           console.log("username already taken");
         }
@@ -134,6 +145,14 @@ class Signup extends Component {
         >
           Register
         </Button>
+        <Alert
+          className="alert"
+          color="info"
+          isOpen={this.state.visible}
+          toggle={this.onDismiss}
+        >
+          Successful Signup! Now you can login!
+        </Alert>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <Container className="signUpForm">
             <h2 className="text-center mb-3">

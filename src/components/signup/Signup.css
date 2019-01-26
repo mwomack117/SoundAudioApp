@@ -14,3 +14,8 @@
 .form-toggle {
   margin-left: 50px;
 }
+
+.alert {
+  width: 420px;
+  margin: 0 Auto;
+}

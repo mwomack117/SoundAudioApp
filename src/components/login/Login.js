@@ -18,8 +18,8 @@ import {
 } from "reactstrap";
 
 class LoginForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: "",
       password: "",
@@ -114,7 +114,7 @@ class LoginForm extends Component {
                 style={{ marginBottom: "1rem" }}
                 size="lg"
               >
-                Log In
+                Login
               </Button>
               <Signup />
               <Modal isOpen={this.state.modal} toggle={this.toggle}>
