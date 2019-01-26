@@ -2,6 +2,7 @@
   "name": "project-login",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
@@ -24,8 +25,8 @@
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server/server.js",
-    "start:dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && yarn install",
