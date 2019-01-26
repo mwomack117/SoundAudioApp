@@ -1,10 +1,9 @@
 .signInForm {
   background-color: white;
-  width: 350px;
   padding: 10px;
-  border: gray solid 2px;
   border-radius: 8px;
   margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .login-page-div {
@@ -27,5 +26,11 @@
 }
 
 .form-toggle {
+  margin-right: 50px;
+  padding: 15px 25px;
+}
+
+.btn-inline {
+  display: inline;
   margin: 0 auto;
 }
