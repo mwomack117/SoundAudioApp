@@ -3,4 +3,11 @@
   text-align: left;
   margin-bottom: 0.25rem;
   margin-left: 5px;
+  overflow: scroll;
+  max-width: 367px;
+}
+
+.audio-card {
+  max-height: 345px;
+  background-color: lightgrey;
 }

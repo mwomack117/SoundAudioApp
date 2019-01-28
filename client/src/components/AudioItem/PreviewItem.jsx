@@ -19,7 +19,7 @@ class PreviewItem extends Component {
   render() {
     return (
       <div style={style}>
-        <Card>
+        <Card className="audio-card">
           <CardTitle className="title">{this.props.audio.name}</CardTitle>
           <CardImg top src={this.props.audio.images["waveform_m"]} />
           <CardBody>
