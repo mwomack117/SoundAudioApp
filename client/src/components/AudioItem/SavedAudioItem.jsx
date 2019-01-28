@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { Card, CardImg, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import "./AudioItem.css";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button
+} from "reactstrap";
 import axios from "axios";
 
 const style = {
@@ -15,35 +23,34 @@ class SavedAudioItem extends Component {
     // debugger;
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleDeleteSound = event => {
     event.preventDefault();
 
     //request to server to add a new username/password
-    axios.get(`user/sound/delete/${this.props.audio._id}`)
-      .then(data => {
-        axios.get(`/user/saved/${this.props.userId}`)
-        .then(response => {
-          console.log(response)
-          this.props.updateSounds(
-            response.data
-          );
-        });
-      })
-  }
+    axios.get(`user/sound/delete/${this.props.audio._id}`).then(data => {
+      axios.get(`/user/saved/${this.props.userId}`).then(response => {
+        console.log(response);
+        this.props.updateSounds(response.data);
+      });
+    });
+  };
 
   render() {
     return (
       <div style={style}>
-        <Card>
-          <CardTitle>{this.props.audio.name}</CardTitle>
+        <Card className="audio-card">
+          <CardTitle className="title">{this.props.audio.name}</CardTitle>
           <CardImg top src={this.props.audio.image} />
           <CardBody>
             <CardText>
               <ReactAudioPlayer src={this.props.audio.preview} controls />
             </CardText>
-            <Button value={this.props.audio._id} onClick={this.handleDeleteSound}>
+            <Button
+              value={this.props.audio._id}
+              onClick={this.handleDeleteSound}
+            >
               Delete Sound
             </Button>
           </CardBody>

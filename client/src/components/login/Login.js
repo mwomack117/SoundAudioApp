@@ -39,8 +39,12 @@ class LoginForm extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
-  handlePreview = async event => {
-    const response = await API.loginSounds(event);
+  handlePreview = async randomRating => {
+    // Random preview
+    let ratings = [4, 4.2, 4.4, 4.5];
+    randomRating = ratings[Math.floor(Math.random() * ratings.length)];
+
+    const response = await API.loginSounds(randomRating);
     console.log(response);
 
     this.setState({
@@ -104,7 +108,7 @@ class LoginForm extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div>
+        <div className="bg-login">
           <div className="login-page-div">
             <div className="btn-inline">
               <Button
@@ -188,14 +192,18 @@ class LoginForm extends Component {
               </Modal>
             </div>
           </div>
+          <div className="prev-headline">
+            Once logged in, a user can customize searches, download sounds, and
+            save playlists.
+          </div>
           <div className="login-content">
             <Button
               className="preview-button btn-warning"
               onClick={this.handlePreview}
             >
-              Click for a preview
+              Preview random sounds!
             </Button>
-            <PreviewList className="list" audios={this.state.audios} />
+            <PreviewList className="prev-content" audios={this.state.audios} />
           </div>
         </div>
       );

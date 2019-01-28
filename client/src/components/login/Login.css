@@ -13,7 +13,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 65vh;
+  height: 60vh;
   background-position: 50%;
   padding-top: 2vh;
   box-shadow: 0 5px 15px 5px lightslategrey;
@@ -34,3 +34,25 @@
   display: inline;
   margin: 0 auto;
 }
+
+.prev-headline {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.preview-button {
+  margin-top: 2vh;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* .prev-content {
+  background-color: aquamarine;
+}
+
+.bg-login {
+  height: 100%;
+  background-color: aquamarine;
+} */
