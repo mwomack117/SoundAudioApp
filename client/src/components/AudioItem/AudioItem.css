@@ -3,11 +3,36 @@
   text-align: left;
   margin-bottom: 0.25rem;
   margin-left: 5px;
+  padding: 5px;
+  margin-top: 3px;
   overflow: scroll;
   max-width: 367px;
 }
 
+
+
+
 .audio-card {
   max-height: 345px;
-  background-color: lightgrey;
+  width: 300px;
+  background-color: rgb(152, 150, 150);
+  border-radius: 7px;
+  border: solid black 2px;
+  
 }
+
+
+.player {
+  width: 190px;
+  margin: auto 0;
+  -webkit-transition: width 1.5s; /* For Safari 3.1 to 6.0 */
+  transition: width 1.5s;
+  border-radius: 50%;
+  border: solid #FFC300;
+}
+
+.player:hover {
+  width: 100%;
+}
+
+

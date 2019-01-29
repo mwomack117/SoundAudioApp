@@ -44,12 +44,14 @@ class SavedAudioItem extends Component {
           <CardTitle className="title">{this.props.audio.name}</CardTitle>
           <CardImg top src={this.props.audio.image} />
           <CardBody>
-            <CardText>
-              <ReactAudioPlayer src={this.props.audio.preview} controls />
-            </CardText>
+            <div>
+              <ReactAudioPlayer src={this.props.audio.preview} controls 
+              className="player" />
+            </div>
             <Button
               value={this.props.audio._id}
               onClick={this.handleDeleteSound}
+              className="preview-button btn-warning border-dark"
             >
               Delete Sound
             </Button>

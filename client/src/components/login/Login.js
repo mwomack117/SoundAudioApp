@@ -198,7 +198,7 @@ class LoginForm extends Component {
           </div>
           <div className="login-content">
             <Button
-              className="preview-button btn-warning"
+              className="preview-button btn-warning border-dark"
               onClick={this.handlePreview}
             >
               Preview random sounds!
