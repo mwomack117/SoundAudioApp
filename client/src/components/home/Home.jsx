@@ -59,14 +59,13 @@ class Home extends Component {
         </div>
 
         <div className="searchResults">
-          <h1>Search Results</h1>
+          <h1 className="header">Search Results</h1>
           <AudioList audios={this.state.audios} userId={this.props.userId} updateSounds={this.updateSavedSounds} />
           <br />
-          <hr />
           <br />
         </div>
         <div className="savedResults">
-          <h1>Saved Sounds</h1>
+          <h1 className="header">Saved Sounds</h1>
           <SavedAudioList audios={this.state.saved} userId={this.props.userId} updateSounds={this.updateSavedSounds} />
         </div>
       </div>

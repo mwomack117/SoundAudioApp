@@ -48,13 +48,14 @@ class AudioItem extends Component {
           <CardTitle className="title">{this.props.audio.name}</CardTitle>
           <CardImg top src={this.props.audio.images["waveform_m"]} />
           <CardBody>
-            <CardText>
-              <ReactAudioPlayer
-                src={this.props.audio.previews[`preview-hq-mp3`]}
-                controls
-              />
-            </CardText>
-            <Button value={this.props.audio.id} onClick={this.handleSavedSound}>
+              <div>
+                <ReactAudioPlayer
+                  src={this.props.audio.previews[`preview-hq-mp3`]}
+                  controls
+                  className="player"
+                />
+              </div>
+            <Button value={this.props.audio.id} onClick={this.handleSavedSound} className="preview-button btn-warning border-dark">
               Save Sound
             </Button>
             {console.log(this.props.audio.id)}

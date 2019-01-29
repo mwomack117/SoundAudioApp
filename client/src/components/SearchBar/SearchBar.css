@@ -1,6 +1,10 @@
 .searchBar {
     text-align: center;
     margin: auto;
-    width: 30%;
+    width: 40%;
     margin-top: 2em;
+    border-radius: 12px;
+    border: solid #00B900 5px;
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
