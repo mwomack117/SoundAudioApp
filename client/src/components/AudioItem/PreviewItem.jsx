@@ -23,13 +23,13 @@ class PreviewItem extends Component {
           <CardTitle className="title">{this.props.audio.name}</CardTitle>
           <CardImg top src={this.props.audio.images["waveform_m"]} />
           <CardBody>
-            <CardText>
+            <div>
               <ReactAudioPlayer
-                className="player"
+                className="player-preview"
                 src={this.props.audio.previews[`preview-hq-mp3`]}
                 controls
               />
-            </CardText>
+            </div>
           </CardBody>
         </Card>
       </div>
