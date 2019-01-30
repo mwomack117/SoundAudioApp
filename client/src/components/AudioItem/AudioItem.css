@@ -11,20 +11,19 @@
 
 .audio-card {
   height: 345px;
-  width: 300px;
+  width: 280px;
   background-color: rgb(152, 150, 150);
   border-radius: 7px;
   border: solid black 2px;
 }
 
 .player {
-  width: 190px;
+  width: 100%;
   margin: auto 0;
-  -webkit-transition: width 1.5s; /* For Safari 3.1 to 6.0 */
-  transition: width 1.5s;
   border-radius: 20%;
 }
 
-.player:hover {
-  width: 100%;
+.player-preview {
+  width: 191px;
+  border-radius: 20%;
 }
