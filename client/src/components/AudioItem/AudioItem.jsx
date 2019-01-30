@@ -46,7 +46,7 @@ class AudioItem extends Component {
       <div style={style}>
         <Card className="audio-card">
           <CardTitle className="title">{this.props.audio.name}</CardTitle>
-          <CardImg top src={this.props.audio.images["waveform_m"]} />
+          <img top src={this.props.audio.images["waveform_m"]} />
           <CardBody>
               <div>
                 <ReactAudioPlayer
