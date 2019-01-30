@@ -7,10 +7,16 @@
   margin-top: 3px;
   overflow: scroll;
   max-width: 367px;
+  height: 50px;
+}
+
+img {
+  width: 100%;
+  height: 100px;
 }
 
 .audio-card {
-  height: 345px;
+  height: 300px;
   width: 280px;
   background-color: rgb(152, 150, 150);
   border-radius: 7px;
@@ -24,6 +30,7 @@
 }
 
 .player-preview {
-  width: 191px;
+  width: 190px;
+  margin: auto 0;
   border-radius: 20%;
 }
