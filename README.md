@@ -6,20 +6,23 @@ An app for searching sound effects and audio clips. A user can easily search, sa
 
 ## Installing / Getting started
 
-`- Install dependencies for server`
+```
+- Install dependencies for server
 npm install
 
-`- Install dependencies for client`
+- Install dependencies for client
 npm run client-install
 
-`- Run the client & server with concurrently`
+- Run the client & server with concurrently
 npm start
 
-`Server runs on http://localhost:3002 and client on http://localhost:3000`
+Server runs on http://localhost:3002 and client on http://localhost:3000
+```
 
 If running locally, you will need to setup your own local development database in the /database/index.js file.
 
-```const uri = process.env.MONGODB_URI || "mongodb://localhost/YOUR_OWN_LOCAL_DB";
+```
+const uri = process.env.MONGODB_URI || "mongodb://localhost/YOUR_OWN_LOCAL_DB";
 
 ```
 
