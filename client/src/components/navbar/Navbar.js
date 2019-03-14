@@ -92,7 +92,7 @@ class NavBar extends Component {
                     Upload
                   </Link>
                 </NavItem> */}
-                <NavItem>
+                {/* <NavItem>
                   <i
                     className="fas fa-phone"
                     style={{ fontSize: 20, color: "white" }}
@@ -100,7 +100,7 @@ class NavBar extends Component {
                   <Link to="/contact" className="text-white links">
                     Contact
                   </Link>
-                </NavItem>
+                </NavItem> */}
               </Nav>
             </Collapse>
           </Navbar>
